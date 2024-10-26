@@ -69,7 +69,7 @@ const wanted_price = 6000;
         } catch (error) {
             if (error.message.includes('429')) {
                 console.log('Received 429 error. Retrying after a delay...');
-                await new Promise(res => setTimeout(res, 5000)); // Delay before retrying
+                await new Promise(res => setTimeout(res, 5000)); // Delay before rrying
                 retries--;
             } else {
                 console.error('An error occurred:', error.message);
