@@ -1,5 +1,9 @@
 const nodemailer = require ("nodemailer"); 
-require ("dotenv"). config();
+require ("dotenv").config();
+
+console.log(process.env.hell)
+
+console.log(process.env.APP_PASSWORD)
 
 const path = require("path");
 
@@ -11,21 +15,23 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-        user: process.env.USER,
+        user: process.env.hell,
         pass: process.env.APP_PASSWORD,
     },
+    // tls: {
+    //     rejectUnauthorized: false // Disable certificate validation
+    // },
 });
 
 
 const mailOptions = {
     from: {
         name: 'Web Wizard', 
-        address: process.env.USER
+        address: process.env.hell,
     }, // sender address
-    to: ["kkankariya007@gmail.com"], 
+    to: ["kkankariya007@yahoo.com"], 
     subject: "Send email using nodemailer and gmail v",
     text: "Hello world?",
-    html: "<b>Hello",
 }
 
 
@@ -40,7 +46,7 @@ const sendMail = async(transporter,mailOptions) => {
    }catch(error){
     console.log(error)
     }
-
-
-
 }
+
+// Call the sendMail function
+sendMail(transporter, mailOptions);
