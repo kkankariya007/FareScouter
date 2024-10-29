@@ -42,7 +42,7 @@ const wanted_price = 6000;
 
             // Get the price
             const price = await page.$eval('.bt-custom-pivot-sub-text', el => el.innerText);
-            console.log('Price Found:', price);
+            // console.log('Price Found:', price);
 
             const convertPrice = (priceString) => {
                 if (priceString) {
@@ -55,14 +55,14 @@ const wanted_price = 6000;
             // Check if the price was found
             if (price) {
                 const priceNumber = convertPrice(price);
-                console.log('Price Found:', price);
-                console.log('Price as Number:', priceNumber);
+                // console.log('Price Found:', price);
+                // console.log('Price as Number:', priceNumber);
         
                 // Example comparison with wanted price
                 if (priceNumber < wanted_price) {
-                   console.log('price is lower '+priceNumber)
+                   console.log('price is '+priceNumber+' lower than the expected price of '+wanted_price)
                 } else {
-                    console.log('Price is higher than or equal to the wanted price.');
+                    console.log('Price is higher than or equal to the wanted price.'+priceNumber);
                 }
             }
 
@@ -70,7 +70,6 @@ const wanted_price = 6000;
             if (error.message.includes('429')) {
                 console.log('Received 429 error. Retrying after a delay...');
                 await new Promise(res => setTimeout(res, 5000)); // Delay before rrying
-                retries--;
             } else {
                 console.error('An error occurred:', error.message);
             }

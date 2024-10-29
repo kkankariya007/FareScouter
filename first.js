@@ -21,7 +21,7 @@ const puppeteer = require('puppeteer');
 
     const url = 'https://www.skyscanner.co.in/transport/flights/pnq/blr/241111/?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=0&preferdirects=true&outboundaltsenabled=false&inboundaltsenabled=false';
     const url3='https://www.google.com/travel/flights/search?tfs=CBwQAhopEgoyMDI0LTExLTA3ag0IAhIJL20vMDE1eTJxcgwIAxIIL20vMDljMTdAAUgBcAGCAQsI____________AZgBAg'
-    const url4='https://www.google.com/travel/flights/search?q=flights+from+pnq-blr&src=pnq&des=blr&ddate=2024-12-16&isr=0&rdate=&cls=0&adult=1&child=0&infant=0&form=FLAFLI&entrypoint=FBSCOP';
+    const url4='https://www.bing.com/travel/flight-search?q=flights+from+pnq-blr&src=pnq&des=blr&ddate=2024-12-16&isr=0&rdate=2024-12-19&cls=0&adult=1&child=0&infant=0&form=FLAFLI&entrypoint=FBSCOP';
 
     // Increase timeout for page load
     await page.goto(url4, { waitUntil: 'networkidle2', timeout: 30000 });
@@ -30,7 +30,7 @@ const puppeteer = require('puppeteer');
     await new Promise(resolve => setTimeout(resolve, Math.random() * 2000 + 1000)); // Delay between 1 to 3 seconds
 
     // Wait for the specific selector
-    // await page.waitForSelector('.BpkText_bpk-text__ODgwN.BpkText_bpk-text--heading-4__Y2VlY', { timeout: 20000 });
+    await page.waitForSelector('.BpkText_bpk-text__ODgwN.BpkText_bpk-text--heading-4__Y2VlY', { timeout: 20000 });
 
     // Simulate scrolling down
     await page.evaluate(() => window.scrollBy(0, window.innerHeight));
