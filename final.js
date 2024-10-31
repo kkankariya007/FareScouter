@@ -2,9 +2,9 @@ const puppeteer = require('puppeteer');
 const nodemailer = require ("nodemailer"); 
 require ("dotenv").config();
 
-console.log(process.env.hell)
+// console.log(process.env.hell)
 
-console.log(process.env.APP_PASSWORD)
+// console.log(process.env.APP_PASSWORD)
 
 const path = require("path");
 
@@ -24,8 +24,8 @@ const transporter = nodemailer.createTransport({
     // },
 });
 
-const url = 'https://www.bing.com/travel/flight-search?q=flights+from+pnq-blr&src=pnq&des=blr&ddate=2024-11-10&isr=0&rdate=2024-12-19&cls=0&adult=1&child=0&infant=0&form=FLAFLI&entrypoint=FBSCOP';
-const wanted_price = 6000;
+const url = 'https://www.bing.com/travel/flight-search?q=flights+from+blr-dxb&src=blr&des=dxb&ddate=2024-12-05&isr=0&rdate=2024-12-19&cls=0&adult=1&child=0&infant=0&form=FLAFLI&entrypoint=FBSCOP';
+const wanted_price = 14500;
 
 (async () => {
     const browser = await puppeteer.launch();
@@ -37,12 +37,12 @@ const wanted_price = 6000;
     // Set cookies
     const cookies = [
         {
-            name: 'cookie_name1', // Replace with actual cookie name
-            value: 'cookie_value1', // Replace with actual cookie value
-            domain: '.bing.com', // Replace with actual domain
-            path: '/', // Path for the cookie
-            httpOnly: true, // Set to true if the cookie is HTTP-only
-            secure: true // Set to true if the cookie is secure
+            name: 'cookie_name1', 
+            value: 'cookie_value1',
+            domain: '.bing.com', 
+            path: '/', 
+            httpOnly: true, 
+            secure: true 
         },
         {
             name: 'cookie_name2',
@@ -58,31 +58,25 @@ const wanted_price = 6000;
     await page.setCookie(...cookies);
 
         try {
-            // Navigate to the URL
             await page.goto(url, { waitUntil: 'domcontentloaded' });
 
-            // Wait for the price element to appear
             await page.waitForSelector('.bt-custom-pivot-sub-text', { timeout: 10000 });
 
-            // Get the price
             const price = await page.$eval('.bt-custom-pivot-sub-text', el => el.innerText);
             // console.log('Price Found:', price);
 
             const convertPrice = (priceString) => {
                 if (priceString) {
-                    // Remove the rupee sign and commas, then convert to number
                     return parseFloat(priceString.replace(/₹|,/g, '').trim());
                 }
                 return null;
             };
         
-            // Check if the price was found
             if (price) {
                 const priceNumber = convertPrice(price);
                 // console.log('Price Found:', price);
                 // console.log('Price as Number:', priceNumber);
         
-                // Example comparison with wanted price
                 if (priceNumber < wanted_price) {
 
                     const mailOptions = {
@@ -90,7 +84,8 @@ const wanted_price = 6000;
                             name: 'Hello from Flight Scouter', 
                             address: process.env.hell,
                         }, // sender address
-                        to: ["kkankariya007@yahoo.com"], 
+
+                        to: ["kkankariya007@yahoo.com","kunalkabra04@gmail.com"], 
                         subject: "Send email for drop in flight price :)",
                         html: `<h1>Price is <strong>${priceNumber}</strong>, which is lower than the wanted price of <strong>${wanted_price}</strong>.</h1>`,
 
