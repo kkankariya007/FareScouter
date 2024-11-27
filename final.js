@@ -163,8 +163,7 @@ const wanted_price = 15000;
         <h3>However the more preferrable flight is priced at: Rs.<strong>${bestPriceNumber}</strong>.</h2><br>
         <strong>Here's the link to book the flight:</strong><br/><a href="https://www.goindigo.in/book/flight-select.html?flightNumber=1485&skyscanner_redirectid=RuWHkJe_Ee-Hyy-6p3gGMw&cid=metasearch|skyscanner" target="_blank">Book Flight</a>
         </body>
-        </html>
-    `
+        </html>`
                         // html:htmlContent,
                         // html: `<h1>Price is <strong>${priceNumber}</strong>, which is lower than the wanted price of <strong>${wanted_price}</strong>.</h1>`,
 
@@ -182,8 +181,6 @@ const wanted_price = 15000;
                     sendMail(transporter, mailOptions);
 
                 //    console.log('price is '+priceNumber+' lower than the expected price of '+wanted_price)
-                } else {
-                    // console.log('Price is higher than or equal to the wanted price.'+priceNumber);
                 }
             }
 
