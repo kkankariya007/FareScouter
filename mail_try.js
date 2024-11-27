@@ -1,33 +1,36 @@
 const nodemailer = require ("nodemailer"); 
 require ("dotenv").config();
 
-console.log(process.env.hell)
+console.log(process.env.hellyahoo)
 
-console.log(process.env.APP_PASSWORD)
+console.log(process.env.APP_PASSWORD_YAHOO)
 
 const path = require("path");
 
 // create reusable transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
 
-    service: 'gmail',
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    service: 'yahoo',
+    host: "smtp.mail.yahoo.com",
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
-        user: process.env.hell,
-        pass: process.env.APP_PASSWORD,
+        user: process.env.hellyahoo,
+        pass: process.env.APP_PASSWORD_YAHOO,
     },
-    // tls: {
-    //     rejectUnauthorized: false // Disable certificate validation
-    // },
+    logger: true,
+    tls: {
+    //     secure: false,
+        ignoreTLS: true,
+    //     rejectUnauthorized: false
+    },
 });
 
 
 const mailOptions = {
     from: {
         name: 'Web Wizard', 
-        address: process.env.hell,
+        address: process.env.hellyahoo,
     }, // sender address
     to: ["kkankariya007@yahoo.com"], 
     subject: "Send email using nodemailer and gmail v",
