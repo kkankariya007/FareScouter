@@ -31,9 +31,14 @@ const url = 'https://www.bing.com/travel/flight-search?q=flights+from+bom-dxb&sr
 const wanted_price = 15000;
 
 (async () => {
-    const browser = await puppeteer.launch({headless: false, slowMo:100, args: ['--start-maximized'], defaultViewport:null});
+    const browser = await puppeteer.launch({
+        headless: false, 
+        slowMo:100, 
+        args: ['--start-maximized'],
+        defaultViewport:null
+    });
     const page = await browser.newPage();
-    console.log(page.viewport())
+    // console.log(page.viewport())
     // Set a user agent
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
 
@@ -65,14 +70,14 @@ const wanted_price = 15000;
 
             await page.waitForSelector('.ms-ProgressIndicator.root-168', { 
                 hidden: true, // Wait until the element disappears
-                timeout: 30000 // Optional: Increase timeout if needed
+                timeout: 300000 // Optional: Increase timeout if needed
             });
 
             console.log("Hello");
 
             
-            await page.waitForSelector('.bt-custom-pivot-sub-text', { timeout: 10000 });
-// Get all instances of the selector
+            await page.waitForSelector('.bt-custom-pivot-sub-text', { timeout: 100000 });
+            // Get all instances of the selector
             const prices = await page.$$eval('.bt-custom-pivot-sub-text', els => els.map(el => el.innerText));
             console.log(prices)
         
@@ -92,24 +97,50 @@ const wanted_price = 15000;
 
                 const cheapestPriceNumber = convertPrice(cheapestPrice);
 
-                // console.log('Price Found:', price);
-                // console.log('Price as Number:', priceNumber);
-        
                 if (bestPriceNumber < wanted_price || cheapestPriceNumber<wanted_price) {
 
-                    //clicking price button
+                    //clicking price button-best price
                     await page.waitForSelector('.itineraryCardContainer', { timeout: 10000 });
                     const containerHandle = await page.$('.itineraryCardContainer');
                     if (containerHandle) {
                         console.log('Container element found, searching for the button inside.');
-
+                       
                         const buttonHandle = await containerHandle.$('.ms-Button.ms-Button--primary.flight-select-btn');
                         if (buttonHandle) {
-                            console.log('Button found, scrolling it into view.');
                             console.log('Button is visible and ready to be clicked.');
                             await buttonHandle.click();
                             const newUrl = page.url();
                             console.log('New URL after clicking the button:', newUrl);
+
+                            await page.waitForSelector('.ms-Spinner.priceSpinner.root-208', { 
+                                hidden: true, // Wait until the element disappears
+                                timeout: 30000 // Optional: Increase timeout if needed
+                            });
+                            console.log("can find fare now")
+                            
+                            await page.waitForSelector('.ms-Button.ms-Button--primary.bookBtn');
+                            
+
+                                const [newPage] = await Promise.all([
+                                    new Promise(resolve => browser.once('targetcreated', target => resolve(target.page()))),
+                                    page.click('.ms-Button.ms-Button--primary.bookBtn')
+                                ]);
+                        
+                                // // Wait for the new page to load content
+                                // await newPage.waitForNavigation();
+                        
+                                // Get the URL of the new page
+                                const newUrl23 = newPage.url();
+                        
+                                // Print the new URL
+                                console.log('New URL after clicking the button:', newUrl23);
+                                await page.bringToFront();
+                                console.log('Switched back to the original tab.');
+                                await page.goBack();
+                                console.log("Went back to the previous screen.");
+            
+
+
                         } else {
                             console.log('Button not found inside the container.');
                         }
@@ -117,8 +148,6 @@ const wanted_price = 15000;
                         console.log('Container element not found.');
                     }
                     //button click
-
-
 
 
                     const mailOptions = {
@@ -164,8 +193,6 @@ const wanted_price = 15000;
         <strong>Here's the link to book the flight:</strong><br/><a href="https://www.goindigo.in/book/flight-select.html?flightNumber=1485&skyscanner_redirectid=RuWHkJe_Ee-Hyy-6p3gGMw&cid=metasearch|skyscanner" target="_blank">Book Flight</a>
         </body>
         </html>`
-                        // html:htmlContent,
-                        // html: `<h1>Price is <strong>${priceNumber}</strong>, which is lower than the wanted price of <strong>${wanted_price}</strong>.</h1>`,
 
                     }
                     const sendMail = async(transporter,mailOptions) => {
@@ -179,8 +206,6 @@ const wanted_price = 15000;
                     }
                     // Call the sendMail function
                     sendMail(transporter, mailOptions);
-
-                //    console.log('price is '+priceNumber+' lower than the expected price of '+wanted_price)
                 }
             }
 
@@ -192,7 +217,6 @@ const wanted_price = 15000;
                 console.error('An error occurred:', error.message);
             }
         }
-
 
     // await browser.close();
 })();
