@@ -138,7 +138,58 @@ const wanted_price = 15000;
                                 console.log('Switched back to the original tab.');
                                 await page.goBack();
                                 console.log("Went back to the previous screen.");
-            
+                                
+                                //code to click on the cheapest button
+                                await page.waitForSelector('.bt-custom-pivot-value');
+                                const elements = await page.$$('.bt-custom-pivot-value');                            
+                                if (elements.length >= 2) {
+                                    await elements[1].click();
+                                    console.log('Clicked on the second bt-custom-pivot-value element.');
+                                }
+
+
+                                await page.waitForSelector('.itineraryCardContainer', { timeout: 10000 });
+                                const containerHandle = await page.$('.itineraryCardContainer');
+                                if (containerHandle) {
+                                    console.log('Container element found, searching for the button inside.');
+                                    const buttonHandle = await containerHandle.$('.ms-Button.ms-Button--primary.flight-select-btn');
+                                if (buttonHandle) {
+                                    console.log('Button is visible and ready to be clicked.');
+                                    await buttonHandle.click();
+                                    const newUrl = page.url();
+                                    console.log('New URL after clicking the button:', newUrl);
+
+                                    await page.waitForSelector('.ms-Spinner.priceSpinner.root-208', { 
+                                        hidden: true, // Wait until the element disappears
+                                        timeout: 30000 // Optional: Increase timeout if needed
+                                    });
+                                    console.log("can find fare now")
+                                    
+                                    await page.waitForSelector('.ms-Button.ms-Button--primary.bookBtn');
+                                    
+
+                                        const [newPage] = await Promise.all([
+                                            new Promise(resolve => browser.once('targetcreated', target => resolve(target.page()))),
+                                            page.click('.ms-Button.ms-Button--primary.bookBtn')
+                                        ]);
+                                
+                                        // // Wait for the new page to load content
+                                        // await newPage.waitForNavigation();
+                                
+                                        // Get the URL of the new page
+                                        const newUrl23 = newPage.url();
+                                
+                                        // Print the new URL
+                                        console.log('New URL after clicking the button:', newUrl23);
+                                    }
+                                    else
+                                    console.log("Second button not found inside the container");
+                                }
+                                else
+                                console.log("Cheapest container not found");
+
+
+
 
 
                         } else {
