@@ -1,6 +1,10 @@
 const puppeteer = require('puppeteer');
 const nodemailer = require ("nodemailer"); 
 require ("dotenv").config();
+const express = require('express');
+const app = express();
+const port = 3000; 
+app.use(express.json());
 
 // console.log(process.env.hell)
 
@@ -33,7 +37,7 @@ const wanted_price = 15000;
 (async () => {
     const browser = await puppeteer.launch({
         headless: false, 
-        slowMo:100, 
+        // slowMo: 200, 
         args: ['--start-maximized'],
         defaultViewport:null
     });
@@ -98,7 +102,7 @@ const wanted_price = 15000;
                 const cheapestPriceNumber = convertPrice(cheapestPrice);
 
                 if (bestPriceNumber < wanted_price || cheapestPriceNumber<wanted_price) {
-
+                    let newUrl23,newUrl234;
                     //clicking price button-best price
                     await page.waitForSelector('.itineraryCardContainer', { timeout: 10000 });
                     const containerHandle = await page.$('.itineraryCardContainer');
@@ -130,7 +134,7 @@ const wanted_price = 15000;
                                 // await newPage.waitForNavigation();
                         
                                 // Get the URL of the new page
-                                const newUrl23 = newPage.url();
+                                newUrl23 = newPage.url();
                         
                                 // Print the new URL
                                 console.log('New URL after clicking the button:', newUrl23);
@@ -176,11 +180,11 @@ const wanted_price = 15000;
                                         // // Wait for the new page to load content
                                         // await newPage.waitForNavigation();
                                 
-                                        // Get the URL of the new page
-                                        const newUrl23 = newPage.url();
+                                        console.log("YOYO")
+                                        newUrl234 = newPage.url();
                                 
                                         // Print the new URL
-                                        console.log('New URL after clicking the button:', newUrl23);
+                                        console.log('New URL after clicking the button:', newUrl234);
                                     }
                                     else
                                     console.log("Second button not found inside the container");
@@ -240,8 +244,9 @@ const wanted_price = 15000;
         <h3>For your Flight from Bengaluru to Dubai, on 5th December,2024</h2>
         <h3> Fare Scouter got you a deal which is less than Rs.${wanted_price}.</h3><br>
         <h3>Cheapest price: Rs.<strong>${cheapestPriceNumber}</strong>.</h2><br>
+        <h3><strong>Here's the link to book the flight:</strong><br/><a href=${newUrl23}>Book Flight</a></h3>
         <h3>However the more preferrable flight is priced at: Rs.<strong>${bestPriceNumber}</strong>.</h2><br>
-        <strong>Here's the link to book the flight:</strong><br/><a href="https://www.goindigo.in/book/flight-select.html?flightNumber=1485&skyscanner_redirectid=RuWHkJe_Ee-Hyy-6p3gGMw&cid=metasearch|skyscanner" target="_blank">Book Flight</a>
+        <h3<<strong>Here's the link to book the flight:</strong><br/><a href=${newUrl234}>Book Flight</a></h3>
         </body>
         </html>`
 
@@ -269,5 +274,5 @@ const wanted_price = 15000;
             }
         }
 
-    // await browser.close();
+    await browser.close();
 })();
