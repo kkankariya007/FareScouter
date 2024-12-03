@@ -276,3 +276,6 @@ const wanted_price = 15000;
 
     await browser.close();
 })();
+
+
+
