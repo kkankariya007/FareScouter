@@ -1,16 +1,27 @@
 const puppeteer = require('puppeteer');
 require ("dotenv").config();
+const mariadb = require('mariadb');
 const { link } = require('fs');
-
+const pool = mariadb.createPool({
+    host: '172.16.4.28',  // Change this if you're using a remote database
+    user: 'bfmprd',  // Replace with your MariaDB username
+    password: 'ad7ert74',  // Replace with your MariaDB password
+    database: 'ownbfmprd', 
+    port: 3465, // Your database name
+    connectionLimit: 5
+  });
+const board='MAA'
+const off='BLR'
 const path = require("path");
-const url = 'https://www.bing.com/travel/flight-search?q=flights+from+bom-blr&src=bom&des=blr&ddate=2024-12-16&isr=0&rdate=2024-12-19&cls=0&adult=1&child=0&infant=0&form=FLAFLI&entrypoint=FBSCOP';
+const url='https://www.bing.com/travel/flight-search?q=flights+from+maa-blr&src=maa&des=blr&ddate=2024-12-16&isr=0&rdate=&cls=0&adult=1&child=0&infant=0&form=FBSCOP&entrypoint=FBSCOP';
+// const url = 'https://www.bing.com/travel/flight-search?q=flights+from+bom-blr&src=maa&des=blr&ddate=2024-12-16&isr=0&rdate=2024-12-19&cls=0&adult=1&child=0&infant=0&form=FLAFLI&entrypoint=FBSCOP';
 
 
 let flightDetails=[],originhoursArray=[],originminutesArray=[],destinationhoursArray=[],destinationminutesArray=[],flightData=[];
 (async () => {
     const browser = await puppeteer.launch({
         headless: false, 
-        slowMo: 50, 
+        slowMo: 10, 
         args: ['--start-maximized'],
         defaultViewport:null
     });
@@ -55,7 +66,7 @@ let flightDetails=[],originhoursArray=[],originminutesArray=[],destinationhoursA
             //flight non-stop open
 
 
-            await page.waitForSelector('.flights-filters', { timeout: 10000 });
+            await page.waitForSelector('.flights-filters', { timeout: 30000 });
 
             // Find all occurrences of the flights-filters container
             const flightFilterHandles = await page.$$('.flights-filters');
@@ -185,11 +196,11 @@ let flightDetails=[],originhoursArray=[],originminutesArray=[],destinationhoursA
                     }
                 }
                 console.log(`Flight Number: ${flightDetails}`);
-                console.log(`Extracted hours: ${originhoursArray}`);
-                console.log(`Extracted minutes: ${originminutesArray}`);
+                console.log(`Extracted being hours: ${originhoursArray}`);
+                console.log(`Extracted begin minutes: ${originminutesArray}`);
 
-                console.log(`Extracted hours: ${destinationhoursArray}`);
-                console.log(`Extracted minutes: ${destinationminutesArray}`);
+                console.log(`Extracted destination hours: ${destinationhoursArray}`);
+                console.log(`Extracted destination minutes: ${destinationminutesArray}`);
 
             } else {
                 console.log('No flt_timeDetails elements found after clicking.');
@@ -207,7 +218,7 @@ let flightDetails=[],originhoursArray=[],originminutesArray=[],destinationhoursA
                   if (buttons.length >= 1) {
                     // Click on the first occurrence
                     console.log("Hello   "+buttons.length)
-                    for(let i=0;i<buttons.length;i+=2){
+                    for(let i=0;i<buttons.length;i++){
                         const buttons = await page.$$(
                             // ms-Button ms-Button--primary flight-select-btn desktopOnly root-230
                             '.ms-Button.ms-Button--primary.flight-select-btn.desktopOnly.root-230'
@@ -236,13 +247,19 @@ let flightDetails=[],originhoursArray=[],originminutesArray=[],destinationhoursA
                                             const extractedText = await page.evaluate(element => {
                                                 const text = element.textContent.trim();
                                                 // Regex to match a word before "Book"
-                                                const match = text.match(/([A-Za-z0-9.]+)(?=Book)/);
+                                                const match = text.match(/([A-Za-z\s\.]+)(?=Book)/);
                                                 return match ? match[0] : "NA";  // Return the matched OTA name, or "NA" if not found
                                             }, itrFlightTextHandles[j]);
-                        
+                                            const convertPrice = (priceString) => {
+                                                if (priceString) {
+                                                    return priceString.replace(/₹|,/g, '').trim();
+                                                }
+                                                return null;
+                                            };
+
                                             const extractedPrice = await page.evaluate(element => element.textContent.trim(), itrFlightPriceHandles[j]);
-                        
-                                            flightData.push(extractedText, extractedPrice);
+                                            const extractedPriceNumber=convertPrice(extractedPrice);
+                                            flightData.push(extractedText, extractedPriceNumber);
                                         } else {
                                             flightData.push("NA", 0);
                                         }
@@ -264,14 +281,92 @@ let flightDetails=[],originhoursArray=[],originminutesArray=[],destinationhoursA
 
 
                         console.log('Went back to the previous screen.');
-                        
 
+console.log("Hello")
+                   
                     }
                 }
             }
     
             
-           
+            const result = [];
+
+                    for (let i = 0; i < flightDetails.length; i++) {
+                        const flightNumber = flightDetails[i];
+                        const beginHour = originhoursArray[i];
+                        const beginMinute = originminutesArray[i];
+                        const beginformattedTime = `${beginHour}:${beginMinute}:00`;
+
+                        const destinationHour = destinationhoursArray[i];
+                        const destinationMinute = destinationminutesArray[i];
+                        const destinationformattedTime = `${destinationHour}:${destinationMinute}:00`;
+
+
+                        // Each flight will have three OTA names and prices, based on the corresponding entries in the `otas` array
+                        const otaStartIndex = i * 6; // 6 because there are 3 OTAs (name + price) pairs per flight
+
+                        // Extracting 3 OTAs (name and price pairs) for this flight
+                        const ota1 = [flightData[otaStartIndex], flightData[otaStartIndex + 1]];
+                        const ota2 = [flightData[otaStartIndex + 2], flightData[otaStartIndex + 3]];
+                        const ota3 = [flightData[otaStartIndex + 4], flightData[otaStartIndex + 5]];
+                    
+                        const flightDate = new Date('2024-12-16');
+
+                        // Push the formatted data into the result array
+                        result.push([
+                        flightDate,
+                        flightNumber,
+                        board,
+                        off,
+                        beginformattedTime, 
+                        destinationformattedTime, 
+                        ota1[0], ota1[1], 
+                        ota2[0], ota2[1], 
+                        ota3[0], ota3[1]
+                        ]);
+                    }
+
+
+                    console.log(result)
+                    let connection;
+                    try {
+                        // Get a connection from the pool
+                        connection = await pool.getConnection();
+
+                        // Insert each flight's data into the database
+                        for (const flight of result) {
+                        const query = `
+                            INSERT INTO ai_fare (Date, FN, Board, Off, DTime, ATime, N1, OTA1, N2, OTA2, N3, OTA3)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        `;
+                        
+                        const values = [
+                            flight[0],
+                            flight[1],
+                            flight[2],
+                            flight[3],
+                            flight[4],
+                            flight[5],
+                            flight[6],
+                            flight[7],
+                            flight[8],
+                            flight[9],
+                            flight[10],
+                            flight[11]
+                        ];
+
+                        // Execute the query with the values
+                        await connection.query(query, values);
+                        console.log(`Inserted flight ${flight[0]} into the database.`);
+                        }
+                    } catch (err) {
+                        console.error('Error inserting flight data:', err);
+                    } finally {
+                        // Release the connection back to the pool
+                        if (connection) {
+                        connection.release();
+                        }
+                    }
             
 
         } catch (error) {
