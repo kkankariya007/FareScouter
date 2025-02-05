@@ -1,0 +1,507 @@
+[
+    {
+        "code": "DEL",
+        "city": "Delhi",
+        "name": "Indira Gandhi International Airport",
+        "state": "Delhi",
+        "latitude": 28.556162,
+        "longitude": 77.100282
+    },
+    {
+        "code": "BOM",
+        "city": "Mumbai",
+        "name": "Chhatrapati Shivaji Maharaj International Airport",
+        "state": "Maharashtra",
+        "latitude": 19.08956,
+        "longitude": 72.865614
+    },
+    {
+        "code": "BLR",
+        "city": "Bengaluru",
+        "name": "Kempegowda International Airport",
+        "state": "Karnataka",
+        "latitude": 13.198634,
+        "longitude": 77.706612
+    },
+    {
+        "code": "HYD",
+        "city": "Hyderabad",
+        "name": "Rajiv Gandhi International Airport",
+        "state": "Telangana",
+        "latitude": 17.240263,
+        "longitude": 78.42938
+    },
+    {
+        "code": "MAA",
+        "city": "Chennai",
+        "name": "Chennai International Airport",
+        "state": "Tamil Nadu",
+        "latitude": 12.994112,
+        "longitude": 80.170866
+    },
+    {
+        "code": "CCU",
+        "city": "Kolkata",
+        "name": "Netaji Subhas Chandra Bose International Airport",
+        "state": "West Bengal",
+        "latitude": 22.654727,
+        "longitude": 88.446723
+    },
+    {
+        "code": "AMD",
+        "city": "Ahmedabad",
+        "name": "Sardar Vallabhbhai Patel International Airport",
+        "state": "Gujarat",
+        "latitude": 23.07767,
+        "longitude": 72.634883
+    },
+    {
+        "code": "LKO",
+        "city": "Lucknow",
+        "name": "Chaudhary Charan Singh International Airport",
+        "state": "Uttar Pradesh",
+        "latitude": 26.761406,
+        "longitude": 80.88308
+    },
+    {
+        "code": "BBI",
+        "city": "Bhubaneswar",
+        "name": "Biju Patnaik International Airport",
+        "state": "Odisha",
+        "latitude": 20.244028,
+        "longitude": 85.817774
+    },
+    {
+        "code": "JAI",
+        "city": "Jaipur",
+        "name": "Jaipur International Airport",
+        "state": "Rajasthan",
+        "latitude": 26.82875,
+        "longitude": 75.80554
+    },
+    {
+        "code": "PAT",
+        "city": "Patna",
+        "name": "Jay Prakash Narayan International Airport",
+        "state": "Bihar",
+        "latitude": 25.591316,
+        "longitude": 85.088194
+    },
+    {
+        "code": "RPR",
+        "city": "Raipur",
+        "name": "Swami Vivekananda Airport",
+        "state": "Chhattisgarh",
+        "latitude": 21.180823,
+        "longitude": 81.738777
+    },
+    {
+        "code": "BHO",
+        "city": "Bhopal",
+        "name": "Raja Bhoj International Airport",
+        "state": "Madhya Pradesh",
+        "latitude": 23.287588,
+        "longitude": 77.337595
+    },
+    {
+        "code": "GOI",
+        "city": "Goa",
+        "name": "Manohar International Airport (Mopa)",
+        "state": "Goa",
+        "latitude": 15.72656,
+        "longitude": 73.86361
+    },
+    {
+        "code": "PNQ",
+        "city": "Pune",
+        "name": "Pune International Airport",
+        "state": "Maharashtra",
+        "latitude": 18.582169,
+        "longitude": 73.91981
+    },
+    {
+        "code": "COK",
+        "city": "Kochi",
+        "name": "Cochin International Airport",
+        "state": "Kerala",
+        "latitude": 10.152,
+        "longitude": 76.401905
+    },
+    {
+        "code": "TRV",
+        "city": "Thiruvananthapuram",
+        "name": "Trivandrum International Airport",
+        "state": "Kerala",
+        "latitude": 8.482122,
+        "longitude": 76.920994
+    },
+    {
+        "code": "IXM",
+        "city": "Madurai",
+        "name": "Madurai Airport",
+        "state": "Tamil Nadu",
+        "latitude": 9.834508,
+        "longitude": 78.093503
+    },
+    {
+        "code": "GAU",
+        "city": "Guwahati",
+        "name": "Lokpriya Gopinath Bordoloi International Airport",
+        "state": "Assam",
+        "latitude": 26.106117,
+        "longitude": 91.58594
+    },
+    {
+        "code": "IXZ",
+        "city": "Port Blair",
+        "name": "Veer Savarkar International Airport",
+        "state": "Andaman and Nicobar Islands",
+        "latitude": 11.64661,
+        "longitude": 92.738762
+    },
+    {
+        "code": "SXR",
+        "city": "Srinagar",
+        "name": "Srinagar International Airport",
+        "state": "Jammu and Kashmir",
+        "latitude": 33.987139,
+        "longitude": 74.774266
+    },
+    {
+        "code": "IXR",
+        "city": "Ranchi",
+        "name": "Birsa Munda Airport",
+        "state": "Jharkhand",
+        "latitude": 23.314319,
+        "longitude": 85.321142
+    },
+    {
+        "code": "IXL",
+        "city": "Leh",
+        "name": "Kushok Bakula Rimpochee Airport",
+        "state": "Ladakh",
+        "latitude": 34.135881,
+        "longitude": 77.547822
+    },
+    {
+        "code": "IXE",
+        "city": "Mangalore",
+        "name": "Mangalore International Airport",
+        "state": "Karnataka",
+        "latitude": 12.960733,
+        "longitude": 74.890118
+    },
+    {
+        "code": "IMF",
+        "city": "Imphal",
+        "name": "Imphal International Airport",
+        "state": "Manipur",
+        "latitude": 24.760563,
+        "longitude": 93.896697
+    },
+    {
+        "code": "SHL",
+        "city": "Shillong",
+        "name": "Shillong Airport",
+        "state": "Meghalaya",
+        "latitude": 25.703698,
+        "longitude": 91.978056
+    },
+    {
+        "code": "DMU",
+        "city": "Dimapur",
+        "name": "Dimapur Airport",
+        "state": "Nagaland",
+        "latitude": 25.883297,
+        "longitude": 93.771098
+    },
+    {
+        "code": "DIB",
+        "city": "Dibrugarh",
+        "name": "Dibrugarh Airport",
+        "state": "Assam",
+        "latitude": 27.4839,
+        "longitude": 95.016906
+    },
+    {
+        "code": "TIR",
+        "city": "Tirupati",
+        "name": "Tirupati Airport",
+        "state": "Andhra Pradesh",
+        "latitude": 13.631048,
+        "longitude": 79.543484
+    },
+    {
+        "code": "LHR",
+        "city": "London",
+        "name": "London Heathrow Airport",
+        "latitude": 51.47002,
+        "longitude": -0.454295
+    },
+    {
+        "code": "LGW",
+        "city": "London",
+        "name": "London Gatwick Airport",
+        "latitude": 51.153662,
+        "longitude": -0.182057
+    },
+    {
+        "code": "MAN",
+        "city": "Manchester",
+        "name": "Manchester Airport",
+        "latitude": 53.365838,
+        "longitude": -2.272895
+    },
+    {
+        "code": "BHX",
+        "city": "Birmingham",
+        "name": "Birmingham Airport",
+        "latitude": 52.453856,
+        "longitude": -1.748028
+    },
+    {
+        "code": "DXB",
+        "city": "Dubai",
+        "name": "Dubai International Airport",
+        "latitude": 25.253174,
+        "longitude": 55.365673
+    },
+    {
+        "code": "AUH",
+        "city": "Abu Dhabi",
+        "name": "Abu Dhabi International Airport",
+        "latitude": 24.456814,
+        "longitude": 54.597774
+    },
+    {
+        "code": "DOH",
+        "city": "Doha",
+        "name": "Hamad International Airport",
+        "latitude": 25.273056,
+        "longitude": 51.608056
+    },
+    {
+        "code": "JED",
+        "city": "Jeddah",
+        "name": "King Abdulaziz International Airport",
+        "latitude": 21.670233,
+        "longitude": 39.151011
+    },
+    {
+        "code": "SYD",
+        "city": "Sydney",
+        "name": "Sydney Kingsford Smith Airport",
+        "latitude": -33.939922,
+        "longitude": 151.175276
+    },
+    {
+        "code": "MEL",
+        "city": "Melbourne",
+        "name": "Melbourne Airport",
+        "latitude": -37.669012,
+        "longitude": 144.841028
+    },
+    {
+        "code": "PER",
+        "city": "Perth",
+        "name": "Perth Airport",
+        "latitude": -31.940278,
+        "longitude": 115.966944
+    },
+    {
+        "code": "BNE",
+        "city": "Brisbane",
+        "name": "Brisbane Airport",
+        "latitude": -27.383333,
+        "longitude": 153.1175
+    },
+    {
+        "code": "NCE",
+        "city": "Nice",
+        "name": "Nice Côte d'Azur Airport",
+        "latitude": 43.65841,
+        "longitude": 7.215872
+    },
+    {
+        "code": "MAD",
+        "city": "Madrid",
+        "name": "Adolfo Suárez Madrid–Barajas Airport",
+        "latitude": 40.489311,
+        "longitude": -3.569479
+    },
+    {
+        "code": "BCN",
+        "city": "Barcelona",
+        "name": "Barcelona–El Prat Airport",
+        "latitude": 41.297445,
+        "longitude": 2.083297
+    },
+    {
+        "code": "FRA",
+        "city": "Frankfurt",
+        "name": "Frankfurt Airport",
+        "latitude": 50.033333,
+        "longitude": 8.570556
+    },
+    {
+        "code": "CDG",
+        "city": "Paris",
+        "name": "Charles de Gaulle Airport",
+        "latitude": 49.009724,
+        "longitude": 2.547778
+    },
+    {
+        "code": "AMS",
+        "city": "Amsterdam",
+        "name": "Amsterdam Schiphol Airport",
+        "latitude": 52.310538,
+        "longitude": 4.768274
+    },
+    {
+        "code": "ATL",
+        "city": "Atlanta",
+        "name": "Hartsfield-Jackson Atlanta International Airport",
+        "latitude": 33.640411,
+        "longitude": -84.419853
+    },
+    {
+        "code": "ORD",
+        "city": "Chicago",
+        "name": "O'Hare International Airport",
+        "latitude": 41.978611,
+        "longitude": -87.904724
+    },
+    {
+        "code": "JFK",
+        "city": "New York",
+        "name": "John F. Kennedy International Airport",
+        "latitude": 40.641766,
+        "longitude": -73.780968
+    },
+    {
+        "code": "LAX",
+        "city": "Los Angeles",
+        "name": "Los Angeles International Airport",
+        "latitude": 33.941589,
+        "longitude": -118.40853
+    },
+    {
+        "code": "GRU",
+        "city": "São Paulo",
+        "name": "São Paulo/Guarulhos–Governador André Franco Montoro International Airport",
+        "latitude": -23.435556,
+        "longitude": -46.473056
+    },
+    {
+        "code": "EZE",
+        "city": "Buenos Aires",
+        "name": "Ministro Pistarini International Airport",
+        "latitude": -34.822222,
+        "longitude": -58.535833
+    },
+    {
+        "code": "SCL",
+        "city": "Santiago",
+        "name": "Arturo Merino Benítez International Airport",
+        "latitude": -33.393002,
+        "longitude": -70.785751
+    },
+    {
+        "code": "JNB",
+        "city": "Johannesburg",
+        "name": "O.R. Tambo International Airport",
+        "latitude": -26.133693,
+        "longitude": 28.242317
+    },
+    {
+        "code": "CPT",
+        "city": "Cape Town",
+        "name": "Cape Town International Airport",
+        "latitude": -33.964806,
+        "longitude": 18.601667
+    },
+    {
+        "code": "NBO",
+        "city": "Nairobi",
+        "name": "Jomo Kenyatta International Airport",
+        "latitude": -1.319167,
+        "longitude": 36.9275
+    },
+    {
+        "code": "PEK",
+        "city": "Beijing",
+        "name": "Beijing Capital International Airport",
+        "latitude": 40.079856,
+        "longitude": 116.603112
+    },
+    {
+        "code": "HND",
+        "city": "Tokyo",
+        "name": "Tokyo Haneda Airport",
+        "latitude": 35.549393,
+        "longitude": 139.779839
+    },
+    {
+        "code": "SIN",
+        "city": "Singapore",
+        "name": "Singapore Changi Airport",
+        "latitude": 1.364422,
+        "longitude": 103.991531
+    },
+    {
+        "code": "AKL",
+        "city": "Auckland",
+        "name": "Auckland Airport",
+        "latitude": -37.008247,
+        "longitude": 174.785035
+    },
+    {
+        "code": "ICN",
+        "city": "Seoul",
+        "name": "Incheon International Airport",
+        "latitude": 37.46019,
+        "longitude": 126.440697
+    },
+    {
+        "code": "BKK",
+        "city": "Bangkok",
+        "name": "Suvarnabhumi Airport",
+        "latitude": 13.689999,
+        "longitude": 100.750112
+    },
+    {
+        "code": "KUL",
+        "city": "Kuala Lumpur",
+        "name": "Kuala Lumpur International Airport",
+        "latitude": 2.745573,
+        "longitude": 101.70773
+    },
+    {
+        "code": "FCO",
+        "city": "Rome",
+        "name": "Leonardo da Vinci–Fiumicino Airport",
+        "latitude": 41.800277,
+        "longitude": 12.238889
+    },
+    {
+        "code": "VIE",
+        "city": "Vienna",
+        "name": "Vienna International Airport",
+        "latitude": 48.110278,
+        "longitude": 16.570833
+    },
+    {
+        "code": "ZRH",
+        "city": "Zurich",
+        "name": "Zurich Airport",
+        "latitude": 47.464722,
+        "longitude": 8.549167
+    },
+    {
+        "code": "CUN",
+        "city": "Cancun",
+        "name": "Cancún International Airport",
+        "latitude": 21.036528,
+        "longitude": -86.877083
+    }
+]
